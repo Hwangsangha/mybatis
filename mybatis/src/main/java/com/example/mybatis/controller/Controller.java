@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,5 +41,13 @@ public class Controller {
 		}else {
 			return "사용자 등록 실패";
 		}
+	}
+	
+	//사용자 수정
+	@PutMapping("/{id}")
+	public String update(@PathVariable("id") int id, @RequestBody User user) {
+		user.setId(id);// ID 설정
+		int result = userMapper.update(user);
+		return result == 1 ? "수정 성공" : "수정 실패";
 	}
 }
