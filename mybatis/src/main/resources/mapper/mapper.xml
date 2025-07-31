@@ -23,4 +23,8 @@
 		SET name = #{name}, email = #{email}
 		where id = #{id}
 	</update>
+	
+	<delete id="deleteById" parameterType="int">
+		DELETE FROM users WHERE id = #{id}
+	</delete>
 </mapper>
