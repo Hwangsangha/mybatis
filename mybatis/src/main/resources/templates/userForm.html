@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Users Insert</title>
+</head>
+<body>
+
+<h1>사용자 등록</h1>
+
+<form th:action="@{/users}" th:object="${user}" method="post">
+	<label for="name">이름:</label>
+	<input type="text" th:field="*{name}" id="name" required="required"/><br/><br/>
+	
+	<label for="email">이메일:</label>
+	<input type="email" th:field="*{email}" id="email" required="required"/><br/><br/>
+	
+	<button type="submit">등록</button>
+</form>
+
+<br/>
+<a th:href="@{/users}">목록으로 돌아가기</a>
+</body>
+</html>
