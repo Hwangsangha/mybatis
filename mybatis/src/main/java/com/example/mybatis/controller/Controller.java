@@ -53,7 +53,7 @@ public class Controller {
 	public String update(@PathVariable("id") int id, @RequestBody User user) {
 		user.setId(id);// ID 설정
 		int result = userMapper.update(user);
-		return result > 0 ? "수정 성공" : "수정 실패";
+		return result > 0 ? "redirect:/users" : "수정 실패";
 	}
 	
 	//사용자 삭제
@@ -67,5 +67,13 @@ public class Controller {
 	public String showUserForm(Model model) {
 		model.addAttribute("user", new User());	//빈 user 객체 전달
 		return "userForm";	//위 html파일을 렌더링
+	}
+	
+	@GetMapping("/users/update/{id}")
+	public String showUpdateForm(@PathVariable("id") int id, Model model) {
+		User user = userMapper.findById(id);
+		model.addAttribute("user", user);
+		model.addAttribute("isUpdate", true); //수정폼 여부 표시
+		return "userForm";
 	}
 }
