@@ -6,13 +6,9 @@
 </head>
 <body>
 
-	<h1 th:text="${isUpdate} ? '사용자 수정' : '사용자 등록'"></h1>
+	<h1>사용자 등록</h1>
 
-	<form th:action="@{/users/{id}(id=${user.id})}" method="post">
-		<input type="hidden" name="_method" value="put"/>
-		
-		<label>ID</label>
-		<input type="text" th:field="*{id}" th:readonly="${isUpdate}"/><br/>
+	<form th:action="@{/users}" method="post" th:object="${user}">
 		
 		<label>이름</label>
 		<input type="text" th:field="*{name}"/><br/>
@@ -20,7 +16,7 @@
 		<label>이메일</label>
 		<input type="email" th:field="*{email}"/><br/>
 		
-		<button type="submit" th:text="${isUpdate} ? '수정' : '등록'"></button>
+		<button type="submit" >등록</button>
 	</form>
 	
 	<br/>
